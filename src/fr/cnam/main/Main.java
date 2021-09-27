@@ -11,7 +11,7 @@ public class Main {
 
 		File file = new File("input.csv");
 		ReadInput ri = new ReadInput(file);
-		
+				
 		try {
 			ri.readFile();
 		} catch (IOException e) {
