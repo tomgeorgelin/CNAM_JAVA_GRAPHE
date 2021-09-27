@@ -13,7 +13,7 @@ public class Main {
 		FileManager ri = new FileManager(file);
 				
 		try {
-			ri.readFile();
+			ri.writeNewFile();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
