@@ -9,12 +9,12 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		File file = new File("input.csv");
+		File file = new File("new_input.csv");
 		FileManager ri = new FileManager(file);
 				
 		try {
-			ri.writeNewFile();
-		} catch (IOException e) {
+			ri.removeDuplicates();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
