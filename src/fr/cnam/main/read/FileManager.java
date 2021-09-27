@@ -6,6 +6,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Map.Entry;
 import java.util.TreeMap;	
 
@@ -53,21 +58,23 @@ public class FileManager {
 		bw.flush();
 	}
 	
-	public TreeMap<String, String> removeDuplicates() throws IOException {
+	public TreeMap<Long, String> removeDuplicates() throws IOException, ParseException {
 		String line;
 		BufferedReader br = new BufferedReader(new FileReader(this.file));
 
-		TreeMap<String, String> lines = new TreeMap<String, String>();
+		TreeMap<Long, String> lines = new TreeMap<Long, String>();
 		br.readLine();
 		String firstLine = br.readLine();
-		lines.put(firstLine.split(",")[1], firstLine.substring(25, 84));
-		String lastTime = firstLine.split(",")[1];
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss:SSSS");
+	
+		Long lastTime = sdf.parse(firstLine.split(",")[0] + "  " + firstLine.split(",")[1]).getTime();
+		lines.put(lastTime, firstLine.substring(25, 84));
 		while ((line = br.readLine()) != null) {
 			
-			String time = line.split(",")[1];
+			Long time = sdf.parse(line.split(",")[0] + "  " + line.split(",")[1]).getTime();
 			String newLine = line.substring(25, 84);
 			if (!lines.get(lastTime).equals(newLine)) {
-				lines.put(time, newLine);
+				lines.put(sdf.parse(line.split(",")[0] + "  " + line.split(",")[1]).getTime(), newLine);
 				lastTime = time;
 			}
 		}
