@@ -7,15 +7,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;	
 
-public class ReadInput {
+public class FileManager {
 
 	private File file;
 	
-	public ReadInput(File file) {
+	public FileManager(File file) {
 		this.file = file; 
 	}
 	
-	public void readFile() throws IOException {
+	public void writeNewFile() throws IOException {
 		
 		String ligne;
 		BufferedReader br = new BufferedReader(new FileReader(this.file));
