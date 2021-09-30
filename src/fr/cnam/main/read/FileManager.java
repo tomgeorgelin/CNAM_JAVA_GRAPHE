@@ -43,7 +43,7 @@ public class FileManager {
 			last = last2;
 			
 			newLine = line.split(",")[0];
-			newLine += "," + last2 + ":" + count + "000";
+			newLine += "," + last2 + ":" + "000" + count;
 			newLine += line.substring(19);
 			
 			bw.append(newLine);
@@ -61,9 +61,10 @@ public class FileManager {
 		TreeMap<Long, String> lines = new TreeMap<Long, String>();
 		br.readLine();
 		String firstLine = br.readLine();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss:SSSS");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss:SSSS");
 	
 		Long lastTime = sdf.parse(firstLine.split(",")[0] + "  " + firstLine.split(",")[1]).getTime();
+		
 		lines.put(lastTime, firstLine.substring(25, 84));
 		while ((line = br.readLine()) != null) {
 			
